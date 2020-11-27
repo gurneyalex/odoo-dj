@@ -292,10 +292,9 @@ class Song(models.Model):
 
     def _get_fields(self, model_id, field_list):
         """ helper to set fields from a list """
-        model_name = self.env['ir.model'].browse(model_id).name
         field_names = [f.strip() for f in field_list.split(',')]
         return self.env['ir.model.fields'].search([
-            ('model_id', '=', model_name),
+            ('model_id', '=', model_id),
             ('name', 'in', field_names)
         ])
 
